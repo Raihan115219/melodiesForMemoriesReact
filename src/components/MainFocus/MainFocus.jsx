@@ -37,18 +37,21 @@ const MainFocus = () => {
       </div>
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 items-center gap-4 w-full">
         {cardData.map((item, index) => (
-          <Card className=" p-5 cursor-pointer" key={index}>
+          <Card
+            className="p-4 cursor-pointer group transform transition-transform duration-300 hover:scale-95"
+            key={index}
+          >
             <CardContent>
               <div className="text-center mx-auto flex items-center justify-center mb-2">
                 <img src={item.img} alt={item.title} className="h-20 w-20" />
               </div>
-              <h2 className="text-xl font-bold text-gray-800 mb-5 text-center hover:text-violet-600">
+              <h2 className="text-xl font-bold text-gray-800 mb-5 text-center group-hover:text-violet-600 transition-all duration-300">
                 {item.title}
               </h2>
               <div className="text-gray-600 text-md leading-7 mb-8">
                 {item.desc}
               </div>
-              <div className="text-center flex items-center gap-2 justify-center hover:text-violet-600">
+              <div className="text-center flex items-center gap-2 justify-center group-hover:text-violet-600 transition-all duration-300">
                 <span className="text-md font-medium text-center">
                   {item.shortDesc}
                 </span>

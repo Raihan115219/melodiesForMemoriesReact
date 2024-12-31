@@ -8,6 +8,7 @@ import MainFocus from "./components/MainFocus/MainFocus";
 import Instruments from "./components/OurInstruments/Instruments";
 import OurTeam from "./components/OurTeam/OurTeam";
 import RecentPerformance from "./components/RecentPerformance/RecentPerformance";
+import Testimonial from "./components/Testimonial/Testimonial";
 
 function App() {
   return (
@@ -17,8 +18,9 @@ function App() {
       <AboutUs />
       <MainFocus />
       <OurTeam />
-      <Instruments />
       <RecentPerformance />
+      <Instruments />
+      <Testimonial />
       <ContactSection />
       <FooterSection />
     </div>

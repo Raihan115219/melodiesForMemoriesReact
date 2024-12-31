@@ -1,10 +1,10 @@
 import { IoIosMusicalNote } from "react-icons/io";
-import heroImg from "../../assets/images/hero.png";
+import bannerImg from "../../assets/images/concert.jpg";
 import { Button } from "../ui/button";
 
 const BannerSection = () => {
   return (
-    <section className="bg-gray-100 py-20" id="home">
+    <section className="bg-gray-100 pt-5" id="home">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 items-center gap-10">
         <div className="mb-14 text-center md:text-left">
           <p className="flex items-center justify-center md:justify-start gap-2 mb-5 text-sm font-bold text-gray-700">
@@ -27,7 +27,7 @@ const BannerSection = () => {
         </div>
 
         <figure>
-          <img src={heroImg} alt="banner" className="w-full" />
+          <img src={bannerImg} alt="banner" className="w-full h-full" />
         </figure>
       </div>
     </section>

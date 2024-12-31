@@ -21,7 +21,7 @@ const Instruments = () => {
     { name: "Harmonica", icon: <LuPiano />, price: 800 },
   ];
   return (
-    <section className="bg-gray-100 py-20" id="instruments">
+    <section className="bg-gray-100 py-14" id="instruments">
       <div className="text-center mb-14">
         <Badge className="mb-4">Instruments</Badge>
         <h3 className="text-4xl font-bold">Our Instruments</h3>
@@ -29,7 +29,7 @@ const Instruments = () => {
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 items-center gap-5">
         {instruments.map((instrument, index) => (
           <Card
-            className="group p-5 cursor-pointer w-[350px] h-[250px] bg-white hover:bg-violet-500 flex items-center justify-center transition-all duration-300"
+            className="group p-5 cursor-pointer w-[350px] h-[250px] bg-white hover:scale-105 hover:bg-violet-500 flex items-center justify-center transition-all duration-300"
             key={index}
           >
             <CardContent>
