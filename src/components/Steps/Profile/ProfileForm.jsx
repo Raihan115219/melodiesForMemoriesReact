@@ -30,9 +30,6 @@ export default function ProfileForm() {
 
   return (
     <div>
-      <div className="text-center">
-        <h1 className="text-3xl mb-4 font-bold underline">Profile</h1>
-      </div>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}

@@ -1,11 +1,16 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import { Button } from "../ui/button";
-import { Dialog, DialogContent, DialogFooter } from "../ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "../ui/dialog";
 
 const MultiStepModal = ({
   steps,
-
   nextLabel = "Next",
   previousLabel = "Previous",
   finishLabel = "Finish",
@@ -22,13 +27,18 @@ const MultiStepModal = ({
     if (onFinish) {
       onFinish();
     }
-    onClose(); // Close the modal after finishing
-    setStep(0); // Reset steps for next use
+    onClose();
+    setStep(0);
   };
-
+  console.log(steps[step].props.title);
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className=" max-w-4xl ">
+        <DialogHeader>
+          <DialogTitle className="text-center underline text-2xl font-bold">
+            {steps[step].props.title}
+          </DialogTitle>
+        </DialogHeader>
         <div className="my-4 h-[500px]">{steps[step]}</div>
         <DialogFooter>
           {!isFirstStep && (

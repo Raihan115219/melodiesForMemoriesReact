@@ -12,10 +12,26 @@ const BannerSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const steps = [
-    <ProfileForm onNext={(data) => console.log(data)} key="step1" />,
-    <ArtistInfoForm onNext={(data) => console.log(data)} key="step2" />,
-    <Expertise onNext={(data) => console.log(data)} key="step2" />,
-    <TermsAndConditions onNext={(data) => console.log(data)} key="step3" />,
+    <ProfileForm
+      onNext={(data) => console.log(data)}
+      key="step1"
+      title="Profile Information"
+    />,
+    <ArtistInfoForm
+      onNext={(data) => console.log(data)}
+      key="step2"
+      title="Artist Information"
+    />,
+    <Expertise
+      onNext={(data) => console.log(data)}
+      key="step2"
+      title="Artist Expertise"
+    />,
+    <TermsAndConditions
+      onNext={(data) => console.log(data)}
+      key="step3"
+      title="Terms and conditions"
+    />,
   ];
 
   const handleFinish = () => {
