@@ -1,14 +1,8 @@
 import { useState } from "react";
-import { FiMenu, FiUser, FiX } from "react-icons/fi";
+import { FiMenu, FiX } from "react-icons/fi";
 import logo from "../../assets/images/PNG/MforM color.png";
 import SignInFrom from "../Registration/SignInFrom";
-import {
-  Menubar,
-  MenubarContent,
-  MenubarItem,
-  MenubarMenu,
-  MenubarTrigger,
-} from "../ui/menubar";
+import { Button } from "../ui/button";
 
 const navLinks = [
   { name: "Home", href: "#home" },
@@ -42,8 +36,10 @@ const Header = () => {
         {/* Desktop Navigation */}
         <div className="hidden md:flex space-x-6">{renderLinks()}</div>
 
+        <Button onClick={() => setIsDialogOpen(true)}>Sign In</Button>
+
         {/* Profile Dropdown */}
-        <div className="hidden md:block">
+        {/* <div className="hidden md:block">
           <Menubar>
             <MenubarMenu>
               <MenubarTrigger className="text-gray-800">
@@ -66,7 +62,7 @@ const Header = () => {
               </MenubarContent>
             </MenubarMenu>
           </Menubar>
-        </div>
+        </div> */}
 
         {/* Mobile Menu Toggle */}
         <div className="md:hidden">

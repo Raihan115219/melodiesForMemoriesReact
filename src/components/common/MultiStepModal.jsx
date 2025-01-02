@@ -19,10 +19,8 @@ const MultiStepModal = ({
   onClose,
 }) => {
   const [step, setStep] = useState(0);
-
   const isLastStep = step === steps.length - 1;
   const isFirstStep = step === 0;
-
   const handleFinish = () => {
     if (onFinish) {
       onFinish();
@@ -30,7 +28,7 @@ const MultiStepModal = ({
     onClose();
     setStep(0);
   };
-  console.log(steps[step].props.title);
+
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className=" max-w-4xl ">
