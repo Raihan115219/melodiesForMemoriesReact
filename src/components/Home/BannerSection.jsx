@@ -5,13 +5,17 @@ import MultiStepModal from "../common/MultiStepModal";
 import ArtistInfoForm from "../Steps/Artist/ArtistInfoForm";
 import Expertise from "../Steps/Artist/Expertise";
 import TermsAndConditions from "../Steps/Artist/TermsAndCondition";
+import AskBusiness from "../Steps/clients/AskBusiness";
+import ClientLocationInfo from "../Steps/clients/ClientsLocationInfo";
+import RequestForPerformance from "../Steps/clients/RequestForPerformance";
 import ProfileForm from "../Steps/Profile/ProfileForm";
 import { Button } from "../ui/button";
 
 const BannerSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isConcertModalOpen, setIsConcertModalOpen] = useState(false);
 
-  const steps = [
+  const artistSteps = [
     <ProfileForm
       onNext={(data) => console.log(data)}
       key="step1"
@@ -33,8 +37,39 @@ const BannerSection = () => {
       title="Terms and conditions"
     />,
   ];
+  const concertSteps = [
+    <ProfileForm
+      onNext={(data) => console.log(data)}
+      key="step1"
+      title="Profile Information"
+    />,
+    <AskBusiness
+      onNext={(data) => console.log(data)}
+      key="step2"
+      title="Ask Business"
+    />,
+    <ClientLocationInfo
+      onNext={(data) => console.log(data)}
+      key="step3"
+      title="Client Location Information"
+    />,
+    <RequestForPerformance
+      onNext={(data) => console.log(data)}
+      key="step4"
+      title="Request For Performance"
+    />,
+    <TermsAndConditions
+      onNext={(data) => console.log(data)}
+      key="step5"
+      title="Terms and conditions"
+    />,
+  ];
 
   const handleFinish = () => {
+    console.log("Modal process finished!");
+    setIsConcertModalOpen(false);
+  };
+  const handleConcertFinish = () => {
     console.log("Modal process finished!");
     setIsModalOpen(false);
   };
@@ -59,7 +94,9 @@ const BannerSection = () => {
           </p>
 
           <div className="flex items-center gap-3">
-            <Button className="p-6">Host A House Concert</Button>
+            <Button className="p-6" onClick={() => setIsConcertModalOpen(true)}>
+              Host A House Concert
+            </Button>
             <Button
               className="p-6 bg-teal-800 hover:bg-teal-700"
               onClick={() => setIsModalOpen(true)}
@@ -74,7 +111,16 @@ const BannerSection = () => {
         </figure>
       </div>
       <MultiStepModal
-        steps={steps}
+        steps={concertSteps}
+        nextLabel="Next Step"
+        previousLabel="Previous Step"
+        finishLabel="Complete"
+        isOpen={isConcertModalOpen}
+        onClose={() => setIsConcertModalOpen(false)}
+        onFinish={handleConcertFinish}
+      />
+      <MultiStepModal
+        steps={artistSteps}
         nextLabel="Next Step"
         previousLabel="Previous Step"
         finishLabel="Complete"

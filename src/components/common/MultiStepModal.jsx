@@ -8,6 +8,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "../ui/dialog";
+import { ScrollArea } from "../ui/scroll-area";
 
 const MultiStepModal = ({
   steps,
@@ -21,6 +22,7 @@ const MultiStepModal = ({
   const [step, setStep] = useState(0);
   const isLastStep = step === steps.length - 1;
   const isFirstStep = step === 0;
+
   const handleFinish = () => {
     if (onFinish) {
       onFinish();
@@ -31,13 +33,14 @@ const MultiStepModal = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className=" max-w-4xl ">
+      <DialogContent className="max-w-4xl max-h-[90vh] overflow-hidden">
         <DialogHeader>
           <DialogTitle className="text-center underline text-2xl font-bold">
             {steps[step].props.title}
           </DialogTitle>
         </DialogHeader>
-        <div className="my-4 h-[500px]">{steps[step]}</div>
+        {/* Scrollable Content */}
+        <ScrollArea className="h-[400px] p-4">{steps[step]}</ScrollArea>
         <DialogFooter>
           {!isFirstStep && (
             <Button
@@ -50,7 +53,7 @@ const MultiStepModal = ({
           {!isLastStep ? (
             <Button
               onClick={() => setStep((prev) => prev + 1)}
-              className="px-4 py-2 text-white  rounded-md"
+              className="px-4 py-2 text-white rounded-md"
             >
               {nextLabel}
             </Button>

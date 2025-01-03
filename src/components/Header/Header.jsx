@@ -1,11 +1,19 @@
 import { useState } from "react";
-import { FiMenu, FiX } from "react-icons/fi";
+import { FiMenu, FiUser, FiX } from "react-icons/fi";
+import { Link } from "react-router-dom"; // Import Link
 import logo from "../../assets/images/PNG/MforM color.png";
 import SignInFrom from "../Registration/SignInFrom";
 import { Button } from "../ui/button";
+import {
+  Menubar,
+  MenubarContent,
+  MenubarItem,
+  MenubarMenu,
+  MenubarTrigger,
+} from "../ui/menubar";
 
 const navLinks = [
-  { name: "Home", href: "#home" },
+  { name: "Home", href: "/" }, // Use the Home route with Link
   { name: "About Us", href: "#about" },
   { name: "Our Team", href: "#ourTeam" },
   { name: "Recent Performance", href: "#performance" },
@@ -17,15 +25,30 @@ const Header = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const renderLinks = () =>
-    navLinks.map((link) => (
-      <a
-        key={link.name}
-        href={link.href}
-        className="text-gray-800 text-md font-medium hover:text-violet-600"
-      >
-        {link.name}
-      </a>
-    ));
+    navLinks.map((link) => {
+      // Use Link for Home, and <a> for the rest
+      if (link.name === "Home") {
+        return (
+          <Link
+            key={link.name}
+            to={link.href} // Use 'to' for React Router navigation
+            className="text-gray-800 text-md font-medium hover:text-violet-600"
+          >
+            {link.name}
+          </Link>
+        );
+      } else {
+        return (
+          <a
+            key={link.name}
+            href={link.href} // Standard anchor tag for other links
+            className="text-gray-800 text-md font-medium hover:text-violet-600"
+          >
+            {link.name}
+          </a>
+        );
+      }
+    });
 
   return (
     <nav className="bg-white shadow-md sticky top-0 z-50">
@@ -36,33 +59,36 @@ const Header = () => {
         {/* Desktop Navigation */}
         <div className="hidden md:flex space-x-6">{renderLinks()}</div>
 
-        <Button onClick={() => setIsDialogOpen(true)}>Sign In</Button>
+        <div className="flex items-center space-x-4">
+          <Button onClick={() => setIsDialogOpen(true)}>Sign In</Button>
 
-        {/* Profile Dropdown */}
-        {/* <div className="hidden md:block">
-          <Menubar>
-            <MenubarMenu>
-              <MenubarTrigger className="text-gray-800">
-                <FiUser className="w-6 h-6 cursor-pointer" />
-              </MenubarTrigger>
-              <MenubarContent>
-                <MenubarItem
-                  className="hover:bg-violet-200"
-                  onClick={() => setIsDialogOpen(true)}
-                >
-                  <span>Sign in</span>
-                </MenubarItem>
-                {["My Account", "Profile", "Settings", "Logout"].map((item) => (
-                  <MenubarItem key={item} className="hover:bg-violet-200">
-                    <a href="#" className="block px-4 py-2 text-gray-800">
-                      {item}
-                    </a>
+          {/* Profile Dropdown */}
+          <div className="hidden md:block">
+            <Menubar>
+              <MenubarMenu>
+                <MenubarTrigger className="text-gray-800">
+                  <FiUser className="w-6 h-6 cursor-pointer" />
+                </MenubarTrigger>
+                <MenubarContent>
+                  <MenubarItem
+                    className="hover:bg-violet-200"
+                    // onClick={() => navigate("/profile")}
+                  >
+                    <Link to="/profile">Profile</Link>{" "}
+                    {/* Use Link for Profile */}
                   </MenubarItem>
-                ))}
-              </MenubarContent>
-            </MenubarMenu>
-          </Menubar>
-        </div> */}
+                  {["Logout"].map((item) => (
+                    <MenubarItem key={item} className="hover:bg-violet-200">
+                      <Link to="#" className="block px-4 py-2 text-gray-800">
+                        {item}
+                      </Link>
+                    </MenubarItem>
+                  ))}
+                </MenubarContent>
+              </MenubarMenu>
+            </Menubar>
+          </div>
+        </div>
 
         {/* Mobile Menu Toggle */}
         <div className="md:hidden">
@@ -85,13 +111,13 @@ const Header = () => {
           {renderLinks()}
           <div className="mt-4">
             {["Profile", "Settings", "Logout"].map((item) => (
-              <a
+              <Link
                 key={item}
-                href={`/${item.toLowerCase()}`}
+                to={`/${item.toLowerCase()}`} // Use Link for navigation
                 className="block px-4 py-2 text-gray-800 hover:bg-blue-100"
               >
                 {item}
-              </a>
+              </Link>
             ))}
           </div>
         </div>
